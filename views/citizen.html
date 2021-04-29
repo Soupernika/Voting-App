@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vote now!!!</title>
+	<link rel="stylesheet" type="text/css" href="/public/css/citizen.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="left">
+		<div class="pic">
+		</div>	
+	</div>
+	<div class="right">
+		<div><center><img src="https://media3.giphy.com/media/WpljLwy1ZDsv2IyOSx/giphy.gif" height="100px" width="100px"></center></div>
+		<form method="POST" action="/validateCitizen">
+			<div><center><input class="mail" type="email" name="name" placeholder=" Enter your e-mail" required=""></center></div>
+			<div><center><input class="pass" type="password" name="pass" placeholder=" Enter your password" required=""></center></div>
+			<div><center><input class="btn" type="submit"></center></div>
+			<div class="register"><center> <a href="admin"><strong>Admin?</strong></a> <a href="register"><strong>Register?</strong></a></center>
+			</div>
+			<div><center><table>
+				<tr>
+					<td><center><a href="https://www.facebook.com/" class="fa fa-facebook"></a></center></td>
+					<td><center><a href="https://www.instagram.com/" class="fa fa-instagram"></a></center></td>
+					<td><center><a href="https://twitter.com/login?lang=en" class="fa fa-twitter"></a></center></td>
+				</tr>
+			</table></center></div>
+			<div class="context"><center>Stay Connected</center></div>
+		</form>	
+	</div>
+</body>
+</html>

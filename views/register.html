@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Register</title>
+        <link rel="stylesheet" href="/public/css/register.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+        <script src="/public/js/register.js"></script>
+    </head>
+    <body>
+        <div style="text-align: right"> <a href="citizen" style="color:black;text-decoration: none;font-weight: bold;font-size: 20px;padding:10px">HOME</a> 
+            </div>
+        <div class="register">
+            
+            <img src="https://images.unsplash.com/photo-1534293230397-c067fc201ab8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHJlZ2lzdGVyJTIwZm9yJTIwdm90aW5nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" width="100%" height="100%">
+            <div class="right">
+                <div class="register1 box">Register</div><br>
+                <form name="form1" onsubmit="return validate()" method="post" action="/register">
+                    <table>
+                        <tr>
+                            <td><input type="text" class="input" placeholder="Name" id="name" name="username"></td>
+                        </tr>
+                        <tr>
+                            <td id="name1" style="color: red;padding: 0;padding-left: 10px;font-weight: bold;"></td>
+                        </tr>
+                        <tr>
+                            <td><input id="number" type="number" class="input" placeholder="Aadhar Number" name="rollnumber"></td>
+                        </tr>
+                        <tr>
+                            <td id="number1" style="color: red;padding: 0;padding-left: 10px;font-weight: bold;"></td>                          
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="input" placeholder="E-mail" id="email" name="email"></td>
+                        </tr>
+                        <tr>
+                            <td id="email1" style="color: red;padding: 0;padding-left: 10px;font-weight: bold;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" class="input" placeholder="password" id="pass" name="password"></td>
+                        </tr>
+                        <tr>
+                            <td id="pass1" style="color: red;padding: 0;padding-left: 10px;font-weight: bold;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" class="input" placeholder="Confirm Password" id="cpass" name="cpassword"></td>
+                        </tr>
+                        <tr>
+                            <td id="cpass1" style="color: red;padding: 0;padding-left: 10px;font-weight: bold;"></td>
+                        </tr>
+                        <tr>
+                            <td>Gender <input type="radio" name="gender" checked>Female <input type="radio" name="gender">Male</td>
+                        </tr>
+                        <tr>
+                            <td><button class="button" type="submit" >Register</button></td>
+                        </tr>
+                    </table>
+                    
+                </form>
+            </div>
+        </div>
+        <script>
+            
+        </script>
+    </body>
+</html>

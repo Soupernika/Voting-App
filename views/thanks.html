@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Redirected</title>
+        
+        <style>
+            h1
+            {
+                text-align: center;
+                font-size: 50px;
+                margin-top: 200px;
+            }
+            #bt
+            {
+                text-align: center;
+            }
+            
+         .btn-grad {background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)}
+         .btn-grad {
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+        </style>
+    </head>
+    <body>
+        <center><h1>Thanks for Voting!!!</h1>
+        <form method="POST" action="/redirection"><button class="btn-grad" onclick="fun()">LOG OUT</button></form></center>
+        <script>
+            function fun()
+            {
+                alert("You are getting redirected!!!");
+            }
+        </script>
+    </body>
+</html>

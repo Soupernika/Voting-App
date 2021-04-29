@@ -1,0 +1,105 @@
+body
+{
+	margin: 0px;
+}
+.container
+{
+	background-image: url("https://image.freepik.com/free-vector/abstract-colorful-rectangles-3d-background_41814-327.jpg");
+	margin-top: 0px;
+	height: 720.5px;
+	width: 1000px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	
+}
+.signup
+{
+	position: absolute;
+	top: 60px;
+	margin-left: 850px;
+	height: 600px;
+	width: 500px;
+	border:1px white solid;
+	border-radius: 5px;
+	box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .1);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	
+}
+.icon
+{
+	position: absolute;
+	margin-top: -380px;
+}
+h1 
+{
+	
+	margin-top: 10px;
+  	font-size: 40px;
+  	background: -webkit-linear-gradient(#1C6298,#832C65,#1C6298);
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+
+}
+.mail
+{
+	width: 300px;
+    border: 0;
+    border-bottom: 2px solid #34388F;
+    outline: 0;
+    font-size: 15px;
+    padding-bottom: 8px;
+}
+.pass
+{
+	width: 300px;
+    border: 0;
+    border-bottom: 2px solid #34388F;
+    outline: 0;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+table
+{
+	text-align: center;
+	margin-top: 250px;
+	height:350px;
+	width:350px;
+	margin-bottom: 100px;
+}
+
+.button 
+{
+	background-image: linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%);
+	transition: width 2s;
+}
+.button 
+{
+	border:none;
+	outline: none;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+.button:hover 
+{
+    background-position: right center; 
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+a
+{
+	text-decoration: none;
+	color: grey;
+	font-size: 18px;
+}

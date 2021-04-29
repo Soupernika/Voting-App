@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DashBoard</title>
+        <link rel="stylesheet" href="/public/css/dashboard.css">
+    </head>
+    <body>
+        <div class="log">
+            <form method="POST" action="/logout"><button>Log Out</button> </form>
+          </div>
+        <div class="heading">
+            <strong><h1>VOTE HERE!!!</h1></strong>
+        </div>
+        <table>
+            <tr>
+                <td><img src="https://www.deccanherald.com/sites/dh/files/article_images/2020/05/19/Gandhi%202-1314794103-1571034922.jpg" height="250px" width="100%"></td>
+                <td class="details">
+                    <h1>Mohandas Karamchand Gandhi</h1>
+                    <strong>Born : </strong>2 October 1869
+                    <br><br><strong>Nationality : </strong>Indian
+                    <br><br><form method="POST" action="/gandhi"><button class="btn-grad" onclick="fun()">VOTE NOW !!!</button></form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><img src="https://i.pinimg.com/originals/05/b5/c4/05b5c4009255dcf09808059c044c41f6.jpg" height="250px" width="100%"></td>
+                <td class="details">
+                    <h1>Princess Diana</h1>
+                    <strong>Born : </strong>1 July 1961
+                    <br><br><strong>Nationality : </strong>British
+                    <br><br><form method="POST" action="/diana"><button class="btn-grad" onclick="fun()">VOTE NOW !!!</button></form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/220px-Abraham_Lincoln_O-77_matte_collodion_print.jpg" height="250px" width="100%"></td>
+                <td class="details">
+                    <h1>Abraham Lincoln</h1>
+                    <strong>Born : </strong>February 12, 1809
+                    <br><br><strong>Nationality : </strong>American
+                    <br><br><form method="POST" action="/abrahamlincoln"><button class="btn-grad" onclick="fun()">VOTE NOW !!!</button></form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><img src="https://karsh.org/wordpress/wp-content/uploads/2016/10/Yousuf-Karsh-Mother-Teresa-1988-1482x1960.jpg" height="250px" width="100%"></td>
+                <td class="details">
+                    <h1>Mother Teresa</h1>
+                    <br><br> <strong>Born : </strong>26 August 1910
+                    <br><br><strong>Nationality : </strong>Albanian-Indian
+                    <br><br><form method="POST" action="/motherteresa"><button class="btn-grad" onclick="fun()">VOTE NOW !!!</button></form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <td><img src="https://cdn.one.org/international/media/international/2018/07/03100859/10Facts_Featured.jpg" height="250px" width="100%"></td>
+                <td class="details">
+                    <h1>Nelson Mandela</h1>
+                    <strong>Born : </strong>18 July 1918
+                    <br><br><strong>Nationality : </strong>South African
+                    <br><br><form method="POST" action="/nelson"><button class="btn-grad" onclick="fun()">VOTE NOW !!!</button></form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <script>
+            function fun()
+            {
+                alert("Your vote has been recorded!!!")
+            }
+        </script>
+    </body>
+</html>

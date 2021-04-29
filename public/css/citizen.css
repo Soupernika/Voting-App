@@ -1,0 +1,124 @@
+body
+{
+	margin:0px;
+	border:0px;
+}
+.left
+{
+	width: 31%;
+	height:100%;
+	float: left;
+
+}
+.pic
+{
+	background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/voting-quote-bullet-1540931620.jpg?crop=1xw:1xh;center,top&resize=480:*");
+	width:768px;
+	height: 720px;
+	background-repeat: no-repeat;	
+}
+.right
+{
+	width: 67.4%;
+	height: 100%;
+	margin-left: 32.6%;
+}
+img
+{
+	margin-top: 60px;
+}
+.mail
+{
+	width: 400px;
+    border: 0;
+    border-bottom: 2px solid black;
+    outline: 0;
+    font-size: 20px;
+  	margin-top: 50px;
+  	color: grey;
+  	padding-bottom: 8px;
+}
+.pass
+{
+	width: 400px;
+    border: 0;
+    border-bottom: 2px solid black;
+    outline: 0;
+    font-size: 20px;
+  	margin-top: 50px;
+  	padding-bottom: 8px;
+}
+.fp
+{
+	margin-left: 600px;
+	margin-top: 5px;
+}
+a
+{
+	text-decoration: none;
+	color: black;
+}
+
+.btn
+{
+	background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%);
+}
+.btn
+{
+	margin-top: 50px;
+    cursor:pointer;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+.btn:hover 
+{
+    background-position: right center; 
+    color: #fff;
+    text-decoration: none;
+}
+.register
+{
+	margin-top: 30px;
+}
+table
+{
+	margin-top: 120px;
+}
+table,tr,td
+{
+	height:50px;
+	width: 150px;
+}
+.fa {
+  padding: 10px;
+  padding-right: 10px;
+  font-size: 70px;
+  width: 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 30%;
+}
+.fa-facebook {
+  background: #555555;
+  color: white;
+}
+.fa-instagram {
+  background: #555555;
+  color: white;
+}
+.fa-twitter {
+  background: #555555;
+  color: white;
+}
+.context
+{
+	font-family: 'Pacifico', cursive;
+	color: grey;
+}
