@@ -1,5 +1,6 @@
 var express = require('express');
-var mysql = require('mysql2');
+var mysql = require('mysql2/promise');
+var mysql1=require('mysql2');
 var app = express();
 var path = require('path');
 var bodyParser =require('body-parser');
@@ -14,16 +15,32 @@ app.use(session({secret:"qwerty18052001",
                 resave:false,
                 saveUninitialized:false}))
 
+
+var con;
+var dbConfig = {
+            host     : 'localhost',
+            user     : 'root',
+            password : 'root',
+            database : 'voting_app',
+            insecureAuth:true
+}
+var connect = mysql1.createConnection(dbConfig);
 /*Creating the connection to Database*/
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'root',
-    database : 'voting_app',
-    insecureAuth:true
-});
+const connection = async() => {
+    try
+    {
+        con =await mysql.createConnection(dbConfig);
+        console.log("Connected");
+    }
+    catch(err)
+    {
+        throw err;
+    }
+}
 
-
+const mysqlCon = () => {
+    return con;
+}
 /*Displaying the front page which consists of redirection to Admin and register page*/
 app.get('/',function(request,respond) 
 {
@@ -52,22 +69,21 @@ app.get('/register',function(request,respond)
 
 
 /*Post method to insert the user's email and password in database*/
-app.post('/register',(req,res) => 
+app.post('/register',async (req,res) => 
 {
     var email=req.body.email;
     var pass=req.body.password;
-    connection.query('INSERT INTO citizen_info VALUES(?,?,?)',[email,pass,0],(err) => 
+    try
     {
-        if(err)
-        {
-            throw err;
-        }
-        else
-        {
-            /*Returning to home page after registering*/
-            res.sendFile(path.join(__dirname + '/views/citizen.html'));
-        }
-    })
+        let user = await mysqlCon().query('INSERT INTO citizen_info VALUES(?,?,?)',[email,pass,0]);
+        res.sendFile(path.join(__dirname + '/views/citizen.html'));
+    }
+    catch
+    {
+        res.send("Registration Not successfull!!!");
+    }
+    
+        
 })
 
 /*Validating the admin's email and password*/
@@ -82,55 +98,54 @@ app.post('/validateAdmin',(req,res) =>
         req.session.loggedin = true;
         req.session.username = username;
         /*Query to count the votes as per name*/
-        connection.query("SELECT name,count(name) AS count FROM votes GROUP BY name",(err,result) => 
-        {
+        connect.query("SELECT name,count(name) AS count FROM votes GROUP BY name",(err,result) => {
             if(err)
             {
                 throw err;
             }
             else
             {
-                /*Used to render the ejs file to diplay the votes counted*/
                 obj = {print:result};
                 res.render('print',obj);
             }
-        })
+            
+        });
     }
     else
     {
         res.sendFile(path.join(__dirname + '/views/admin.html'));
     }
+    
 })
 
 
 /*Validating the credentials of the citizen*/
-app.post('/validateCitizen',function(req,res)
+app.post('/validateCitizen',async function(req,res)
 {
     var username=req.body.name;
     var password=req.body.pass;
     if(username && password)
     {
-        connection.query("SELECT password,voted FROM citizen_info where email = ?",[username],(err,rows) => 
+        let rows = await mysqlCon().query("SELECT password,voted FROM citizen_info where email = ?",[username]);
+        try
         {
-            if(err)
-            {
-                throw err;
-            }
-            else if(rows[0].password === password && rows[0].voted === 0)
+            //console.log(rows[0][0].password);
+            if(rows[0][0].password === password && rows[0][0].voted === 0)
             {
                 req.session.loggedin = true;
                 req.session.username = username;
                 res.sendFile(path.join(__dirname + '/views/dashboard.html'));
                 /*Updates the database telling that the person has voted*/
-                connection.query("UPDATE citizen_info SET voted=1 WHERE email = ?",[username],(err,rows) => 
+                let res1=await mysqlCon().query("UPDATE citizen_info SET voted=1 WHERE email = ?",[username]);
+                try
+                {}
+                catch(err)
                 {
-                    if(err)
-                    {
-                        throw err;
-                    }
-                })                
+                    throw err;
+                }
+                             
             }
-            else if((rows[0].password != password))
+            else if((rows[0][0].password != password))
             {
                 /*Returns to home page if the email and password doesn't match*/
                 res.sendFile(path.join(__dirname + '/views/citizen.html'));
@@ -139,7 +154,12 @@ app.post('/validateCitizen',function(req,res)
             {
                 res.sendFile(path.join(__dirname + '/views/voted.html'));
             }
-        })
+        }
+        catch(err)
+        {
+            throw err;
+        }
+        
     }
     else 
     {
@@ -194,60 +214,74 @@ app.get('/dashboard', function(request, response)
 
 
 /*Updating the count in database for each person*/
-app.post('/nelson',function(request,respond) 
+app.post('/nelson',async function(request,respond) 
 {
-    connection.query("INSERT INTO votes VALUES('Nelson',1)",(err) => 
+    var nelson=await mysqlCon().query("INSERT INTO votes VALUES('Nelson',1)");
+    try
     {
-        if(err)
-            throw err;
-    });
-    respond.sendFile(path.join(__dirname + '/views/citizen.html'));
+        respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+    }
+    catch(err)
+    {
+        throw err;
+    }
       
 })
 
 
-app.post('/motherteresa',function(request,respond) 
+app.post('/motherteresa',async function(request,respond) 
 {
-    connection.query("INSERT INTO votes VALUES('Mother Teresa',1)",(err) => 
+    var mother=await mysqlCon().query("INSERT INTO votes VALUES('Mother Teresa',1)");
+    try
     {
-        if(err)
-            throw err;
-    });
-    respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+        respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+    }
+    catch(err)
+    {
+        throw err;
+    }
+})
+
+app.post('/abrahamlincoln',async function(request,respond) 
+{
+    var abraham=await mysqlCon().query("INSERT INTO votes VALUES('Abraham Lincoln',1)");
+    try
+    {
+        respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+    }
+    catch(err)
+    {
+        throw err;
+    }
 
 })
 
-app.post('/abrahamlincoln',function(request,respond) 
+app.post('/diana',async function(request,respond) 
 {
-    connection.query("INSERT INTO votes VALUES('Abraham Lincoln',1)",(err) => 
+    var diana = await mysqlCon().query("INSERT INTO votes VALUES('Princess Diana',1)");
+    try
     {
-        if(err)
-            throw err;
-    });
-    respond.sendFile(path.join(__dirname + '/views/thanks.html'));
-
-})
-
-app.post('/diana',function(request,respond) 
-{
-    connection.query("INSERT INTO votes VALUES('Princess Diana',1)",(err) => 
+        respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+    }
+    catch(err)
     {
-        if(err)
-            throw err;
-    });
-    respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+        throw err;
+    }
 
 })
 
 
-app.post('/gandhi',function(request,respond) 
+app.post('/gandhi',async function(request,respond) 
 {
-    connection.query("INSERT INTO votes VALUES('Mahathma Gandhi',1)",(err) => 
+    var gandhi = await mysqlCon().query("INSERT INTO votes VALUES('Mahathma Gandhi',1)");
+    try
     {
-        if(err)
-            throw err;
-    });
-    respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+        respond.sendFile(path.join(__dirname + '/views/thanks.html'));
+    }
+    catch(err)
+    {
+        throw err;
+    }
 
 })
 
@@ -259,11 +293,25 @@ app.get('*',(req,res) =>
 })
 
 
-/*Async await to connect to the server*/
-async function fun1(req, res){
-    let response = await app.listen(1819);
-      if (response.err) { console.log('error');}
-      else { console.log('fetched response');
-  }}
-
-fun1();
+/*Promises used to connect to server*/
+connection().then(
+    () => {
+        app.listen(1819,(err) => 
+        {
+            if(err)
+            {
+                throw err;
+            }
+            else
+            {
+                console.log("Running Successfully!!!");
+            }
+        })
+    }
+)
+.catch((err) => {
+    if(err)
+    {
+        throw err;
+    }
+})
